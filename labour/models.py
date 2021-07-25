@@ -23,19 +23,23 @@ LOCATION_CHOICES = (
      ("delhi" , "delhi")
 )
 
-
+GENDER_CHOICES = (
+     ("M" , "Male") ,
+     ("F" , "Female") ,
+     ("O" , "Others") ,
+)
 
 class Labour(models.Model):
      first_name = models.CharField(max_length=50)
      last_name = models.CharField(max_length=50)
      age = models.IntegerField()
+     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=False)
      address_line_1 = models.CharField(max_length=255)
      address_line_2 = models.CharField(max_length=255)
      state = models.CharField(max_length=255)
      pincode = models.IntegerField()
-     contact_number = models.IntegerField(unique=True, null=False, blank=False)
-     aadhar_number = models.IntegerField(unique=True, null=False, blank=False)
-     date_of_birth = models.DateField()
+     contact_number = models.BigIntegerField(unique=True, null=False, blank=False)
+     aadhar_number = models.BigIntegerField(unique=True, null=False, blank=False)
      current_location = models.CharField(max_length=20, choices=LOCATION_CHOICES, null=False, blank=False)
      skill = models.CharField(max_length=20, choices=SKILL_CHOICES, default="OTHERS")
      message = models.TextField()
@@ -47,8 +51,11 @@ class Job(models.Model):
      skill_required = models.CharField(max_length=20, choices=SKILL_CHOICES, default="OTHERS")
      location = models.CharField(max_length=20, choices=LOCATION_CHOICES, null=False, blank=False)
      pincode = models.IntegerField()
-     employer_contact = models.IntegerField(unique=True, null=False, blank=False)
+     employer_contact = models.BigIntegerField(unique=True, null=False, blank=False)
      message = models.TextField()
+
+
+
 
 
 
