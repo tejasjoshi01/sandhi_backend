@@ -59,3 +59,7 @@ class JobViewSet(viewsets.ModelViewSet):
      queryset = Job.objects.all()
 
 
+class SkillBasedJobListViewSet(generics.ListAPIView):
+     serializer_class = JobSerializer
+     def get_queryset(self) : 
+          return Job.objects.all().filter(skill_required=self.kwargs['skill'])
